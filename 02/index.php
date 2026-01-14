@@ -3,7 +3,6 @@ declare (strict_types = 1);
 
 //1. Set Up & Start 
 
-
 //2. Code Commenting 
 
 // 
@@ -26,7 +25,7 @@ else {
 $num1 = 1;
 $num2 = 10;
 
-functions add(int $num1, int $num2) : int {
+function add($num1, $num2) {
     return $num1 + $num2;
 }
 
