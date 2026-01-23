@@ -1,6 +1,7 @@
 <?php 
 // Instantiate a car
 require_once("car.php");
+require_once("connect.php");
 
 $myCar = new Car();
 
