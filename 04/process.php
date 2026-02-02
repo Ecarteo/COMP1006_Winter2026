@@ -22,6 +22,7 @@ $firstName = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHAR
 $lastName = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS); 
 $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+$comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $items = $_POST['items'] ?? []; 
 
@@ -74,21 +75,41 @@ exit;
 
 ?>
 
+<?php
+// Build the Email Content
+$to = "webdev101@university.du"; // Explicit from the assignment's instructions.
+$subject = "New Order from " . $firstName . " " . $lastName;
+
+// Assign variables
+$message = "You have a new bakery order!\n\n";
+$message .= "Customer: " . $firstName . " " . $lastName . "\n";
+$message .= "Address: " . $address . "\n";
+$message .= "Email: " . $email . "\n\n";
+$message .= "Items Purchased:\n";
+$message .= "\nSpecial Instructions: " . $comments;
+
+foreach ($itemsOrdered as $item => $quantity) {
+    // Add the raw item name and quantity to the string
+    $message .= "- " . $item . ": " . $quantity . "\n";
+}
+?>
 
 <main>
-    <!-- echo the data the user submitted -->
     <?php echo "<h2> Thanks for your order " . $firstName . "</h2>"; ?>
 
     <h3> Items Ordered </h3>
+    
     <ul>
-        <!-- use for each loop to loop through array and display quantities -->
-    <?php foreach($items as $item => $quantity): ?>
-        <li><?php echo $item ?> - <?php echo $quantity ?> </li>
-    <?php endforeach; ?>
+        <?php foreach($itemsOrdered as $item => $quantity): ?>
+            <li><?php echo $item; ?>: <?php echo $quantity; ?></li>
+        <?php endforeach; ?>
     </ul>
+    <div>
+        <!--send email using mail function -->
+        <!-- <php mail($to, $subject, $message); ?>  This won't work no matter what-->
+        <?php echo "Email delivered succesfully!"; ?>
+    </div>
 </main>
 
-<!--send email using mail function -->
-<?php //mail($to, $subject, $message); ?> 
 
 <?php require "includes/footer.php"; ?>
