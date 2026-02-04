@@ -89,6 +89,22 @@ if (!empty($errors)) {
 INSERT THE ORDER USING A PREPARED STATEMENT
 */
 
+// set the query
+
+$sql = "INSERT INTO orders (first_name, last_name, phone, address, email, chaos_corissant, midnight_muffin, existential_eclair, procrastiantion_cookie, finals_week_brownie, victory_cinnamon_roll, comments) VALUES (:first_name, :last_name, :phone, :address, :email, :chaos_corissant, :midnight_muffin, :existential_eclair, :procrastiantion_cookie, :finals_week_brownie, :victory_cinnamon_roll, :comments)";
+
+//prepare the query
+
+$stmt = $pdo->prepare($sql);
+
+$chaosCroissant = $itemsOrdered['chaos_croissant'] ?? 0;
+$midnightMuffin = $itemsOrdered['midnight_muffin'] ?? 0;
+$chaosCroissant = $itemsOrdered['existential_eclair'] ?? 0;
+$chaosCroissant = $itemsOrdered['procrastination_cookie'] ?? 0;
+$chaosCroissant = $itemsOrdered[''] ?? 0;
+
+//pull from $itemOrderned and store in variables
+
 ?>
 
 <!--Confirmation Message -->
