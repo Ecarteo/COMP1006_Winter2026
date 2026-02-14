@@ -95,7 +95,7 @@ $pdo = null;
 <div class="alert alert-success">
     <h1>Thank you for your order, <?= htmlspecialchars($firstName) ?>!</h1>
     <p>
-        We've received your order and will contact you at
+        We’ve received your order and will contact you at
         <strong><?= htmlspecialchars($email) ?></strong>.
     </p>
 </div>
